@@ -1,0 +1,36 @@
+services:
+  app:  # This is the NestJS app container
+    build: .  # Build the image from the Dockerfile in the current directory
+    container_name: blog-nestjs  # Name of the container
+    ports:
+      - "3000:3000"  # Map the container's port 3000 to host's port 3000
+    depends_on:
+      - db  # This means the app container depends on the db container
+    environment:
+      - DB_HOST=db  # Database host (use the container name of MySQL, 'db')
+      - DB_PORT=3306  # Default MySQL port
+      - DB_USER=root  # MySQL username
+      - DB_PASS=rootpassword  # MySQL password
+      - DB_NAME=blog_db  # MySQL database name
+    networks:
+      - blog-net  # Defines which network the container will join
+
+  db:  # This is the MySQL container
+    image: mysql:8  # Use the official MySQL 8 image from Docker Hub
+    container_name: blog-mysql  # Name of the MySQL container
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpassword  # MySQL root password
+      - MYSQL_DATABASE=blog_db  # Create a default database named 'blog_db'
+    ports:
+      - "3307:3306"  # Map the MySQL port 3306 to the host's port 3307 (avoid conflict)
+    volumes:
+      - mysql-data:/var/lib/mysql  # Persistent volume for MySQL data
+    networks:
+      - blog-net  # MySQL container also joins the same network
+
+volumes:
+  mysql-data:  # Declare a named volume to persist MySQL data
+
+networks:
+  blog-net:  # Define a network to connect both the app and db containers
+    driver: bridge  # Use the default 'bridge' network driver
