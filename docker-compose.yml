@@ -6,12 +6,12 @@ services:
       - "3000:3000"  # Map the container's port 3000 to host's port 3000
     depends_on:
       - db  # This means the app container depends on the db container
-    environment:
-      - DB_HOST=db  # Database host (use the container name of MySQL, 'db')
-      - DB_PORT=3306  # Default MySQL port
-      - DB_USER=root  # MySQL username
-      - DB_PASS=rootpassword  # MySQL password
-      - DB_NAME=blog_db  # MySQL database name
+    # environment:
+    #   - DB_HOST=db  # Database host (use the container name of MySQL, 'db')
+    #   - DB_PORT=3306  # Default MySQL port
+    #   - DB_USER=root  # MySQL username
+    #   - DB_PASS=rootpassword  # MySQL password
+    #   - DB_NAME=blog_db  # MySQL database name
     networks:
       - blog-net  # Defines which network the container will join
 
