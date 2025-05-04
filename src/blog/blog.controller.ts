@@ -7,6 +7,7 @@ export class BlogController {
 
   @Get()
   findAll() {
+
     return this.blogService.findAll();
   }
 

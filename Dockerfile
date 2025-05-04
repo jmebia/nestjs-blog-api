@@ -12,6 +12,7 @@ RUN npm install
 
 # Step 5: Copy the entire project into the container
 COPY . .
+COPY .env .env
 
 # Step 6: Build the TypeScript code
 RUN npm run build
@@ -20,4 +21,4 @@ RUN npm run build
 EXPOSE 3000
 
 # Step 8: Define the command to run the application
-CMD ["npm", "run", "start:prod"]
+CMD ["npm", "run", "start:dev"]

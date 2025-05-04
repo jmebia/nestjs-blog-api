@@ -21,7 +21,9 @@ import { ConfigModule } from '@nestjs/config';
     BlogModule,
     AuthModule,
     UsersModule,
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({
+      isGlobal: true
+    }),
   ],
 })
 export class AppModule {}
