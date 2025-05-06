@@ -1,11 +1,10 @@
 // src/blog/entities/post.entity.ts
 
+import { BaseEntityWithTimestamps } from 'src/common/entities/base.entity';
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity()
-export class Post {
-  @PrimaryGeneratedColumn()
-  id: number;
+export class Post extends BaseEntityWithTimestamps {
 
   @Column()
   title: string;
@@ -13,9 +12,4 @@ export class Post {
   @Column('text')
   content: string;
 
-//   @Column()
-//   author: string;
-
-//   @Column()
-//   createdAt: Date;
 }
