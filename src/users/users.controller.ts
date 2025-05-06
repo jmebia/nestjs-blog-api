@@ -1,4 +1,13 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Get, Post as HttpPost, Body } from '@nestjs/common';
+import { UsersService } from './users.service';
 
-@Controller('users')
-export class UsersController {}
+@Controller('users') // prefix of the route
+export class UsersController {
+  constructor(private readonly userService: UsersService) {}
+
+  @Get()
+  findOne(id : number) {
+    return this.userService.findOne(id);
+  }
+
+}
